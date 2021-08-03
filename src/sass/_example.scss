@@ -1,6 +1,11 @@
 .search-form-input {
-  margin: 20px;
-  border-color: #58bfdf;
+  width: 100%;
+  height: 50px;
+  background-color: #97d2e8;
+  text-align: center;
+  padding: calc(var(--btn-width) / 2);
+  position: fixed;
+  top: 0;
 }
 
 .gallery {
@@ -14,6 +19,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 25px;
+  margin-top: 60px;
 }
 
 .gallery img {
@@ -21,11 +27,7 @@
   width: 100%;
   height: 150px;
   object-fit: cover;
-}
-
-.photo-card {
-  display: flex;
-  justify-content: space-around;
+  border-radius: 2%;
 }
 
 .info-item {
@@ -33,4 +35,14 @@
   align-items: center;
   margin-bottom: 5px;
   margin-top: 10px;
+}
+
+.load-more-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background-color: #97d2e8;
+  border: none;
+  border-radius: 3%;
 }
