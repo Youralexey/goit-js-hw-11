@@ -31,6 +31,7 @@ function onSearch(e) {
         apiService.fetchImg().then(appendHitsMarckup);
         refs.loadMoreBtn.classList.remove('is-hidden');
     }
+    // не знаю как воспользоваться библиотекой
     // if (apiService.query === '') {
     //     return Notiflix.Report.Failure( 'Sorry, there are no images matching your search query','Please try again.' ); 
     // }

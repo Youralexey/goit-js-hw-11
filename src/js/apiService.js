@@ -11,7 +11,8 @@ export default class ApiService {
         const url = `${BASE_URL}?image_type=photo&orientation=horizontal&q=${this.seachQuery}&page=${this.page}&per_page=40&key=${API_KEY}`;
         console.log(url.totalHits)
             return fetch(url).then(response => {
-            console.log('response :>> ', response);
+                console.log('response :>> ', response);
+                 // не знаю как воспользоваться библиотекой
             if (!response.ok) {
                 return Notiflix.Report.Failure( 'Sorry, there are no images matching your search query','Please try again.' );
             } else {
