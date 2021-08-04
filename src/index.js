@@ -11,6 +11,7 @@ const refs = {
     inputEl: document.querySelector('.search-form-input'),
     gallery: document.querySelector('.gallery'),
     loadMoreBtn: document.querySelector('.load-more-btn'),
+    searchButton: document.querySelector('.search-button'),
 };
 const apiService = new ApiService();
 console.log('apiService :>> ', apiService);
@@ -20,26 +21,25 @@ refs.loadMoreBtn.addEventListener('click', loadMore);
 refs.gallery.addEventListener('click', onImgClick);
 
 
+
 function onSearch(e) {
     e.preventDefault();
     clearInput()
+    refs.loadMoreBtn.style.display = 'block';
     apiService.query = e.target.elements.query.value;
+
     console.log('apiService.query :>> ', apiService.query);
-    // const total = response.totalHits;
-    
+
     if (apiService.query) {
         apiService.fetchImg().then(appendHitsMarckup);
         refs.loadMoreBtn.classList.remove('is-hidden');
     }
-    // не знаю как воспользоваться библиотекой
-    // if (apiService.query === '') {
-    //     return Notiflix.Report.Failure( 'Sorry, there are no images matching your search query','Please try again.' ); 
-    // }
 }
 
 function loadMore() {
     apiService.fetchImg().then(appendHitsMarckup).then(scroll);
 }
+
 
 function appendHitsMarckup(hits) {
     refs.gallery.insertAdjacentHTML('beforeend', galleryItem(hits))
@@ -51,7 +51,7 @@ function scroll(){
   .firstElementChild.getBoundingClientRect();
 
 window.scrollBy({
-  top: cardHeight * 9,
+  top: cardHeight * 11,
   behavior: 'smooth',
 });
 }
