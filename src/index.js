@@ -32,7 +32,7 @@ function onSearch(e) {
 
     if (apiService.query) {
         apiService.fetchImg().then(appendHitsMarckup);
-        refs.loadMoreBtn.classList.remove('is-hidden');
+        // refs.loadMoreBtn.classList.remove('is-hidden');
     }
 }
 

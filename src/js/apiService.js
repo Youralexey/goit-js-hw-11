@@ -20,17 +20,20 @@ export default class ApiService {
             
         }).then(data => {
             this.incrementPages();
+
+            const lengthHits = document.querySelectorAll('.photo-card').length;
+
             if (data.totalHits === 0) {
                 const loadMoreBtn = document.querySelector('.load-more-btn');
                 loadMoreBtn.style.display = 'none';
                 return Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.");
             }
-            // if (this.per_page < 40) или (data.totalHits < this.per_page) {  
-            //     const loadMoreBtn = document.querySelector('.load-more-btn');
-            //     loadMoreBtn.style.display = 'none';
+            if (lengthHits >= data.totalHits) {
+                const loadMoreBtn = document.querySelector('.load-more-btn');
+                loadMoreBtn.style.display = 'none';
 
-            //     return Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
-            // }
+                return Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
+            }
 
             return data.hits;
         })
