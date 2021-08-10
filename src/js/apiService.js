@@ -20,18 +20,16 @@ export default class ApiService {
         }).then(data => {
             this.incrementPages();
 
+            const loadMoreBtn = document.querySelector('.load-more-btn');
             const lengthHits = document.querySelectorAll('.photo-card').length;
 
             if (data.totalHits === 0) {
-                const loadMoreBtn = document.querySelector('.load-more-btn');
                 loadMoreBtn.style.display = 'none';
                 return Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.");
             }
             if (lengthHits >= data.totalHits) {
-                const loadMoreBtn = document.querySelector('.load-more-btn');
                 loadMoreBtn.style.display = 'none';
-
-                return Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
+                return  Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
             }
 
             return data.hits;
