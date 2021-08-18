@@ -6,6 +6,7 @@ import Notiflix from 'notiflix';
 import * as basicLightbox from '../node_modules/basiclightbox';
 import '../node_modules/basiclightbox/dist/basicLightbox.min.css'
 
+
 const refs = {
     searchForm: document.querySelector('.search-form'),
     inputEl: document.querySelector('.search-form-input'),
@@ -25,21 +26,22 @@ refs.gallery.addEventListener('click', onImgClick);
 function onSearch(e) {
     e.preventDefault();
     clearInput()
-    refs.loadMoreBtn.style.display = 'block';
+    refs.loadMoreBtn.style.display = 'none';
     apiService.query = e.target.elements.query.value;
 
     console.log('apiService.query :>> ', apiService.query);
 
     if (apiService.query) {
-        apiService.fetchImg().then(appendHitsMarckup);
-        // refs.loadMoreBtn.classList.remove('is-hidden');
+        apiService.fetchImg(true).then(appendHitsMarckup);
+        refs.loadMoreBtn.classList.remove('is-hidden');
     }
 }
 
 function loadMore() {
-    apiService.fetchImg().then(appendHitsMarckup).then(scroll);
-}
 
+    apiService.fetchImg().then(appendHitsMarckup).then(scroll);
+    const lengthHits = document.querySelectorAll('.photo-card').length;
+}
 
 function appendHitsMarckup(hits) {
     refs.gallery.insertAdjacentHTML('beforeend', galleryItem(hits))
